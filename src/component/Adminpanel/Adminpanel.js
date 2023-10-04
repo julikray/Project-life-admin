@@ -128,18 +128,14 @@ function Adminpanel() {
 
   const handleCreateSubmit = () => {
     // Send the data to the backend for storage here
-    const chapterData = {
-      chapterName,
-      verse,
-      summary,
-    };
+ 
 
     fetch('/api/createChapter', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(chapterData),
+      body: JSON.stringify(chapterNumber , chapterName , verse , summary),
     })
       .then((response) => response.json())
       .then((data) => {
