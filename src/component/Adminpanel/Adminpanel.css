@@ -1,0 +1,53 @@
+.box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    width: 100%;
+   
+    
+}
+
+.login{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color:lightgrey ;
+    border-radius: 1rem;
+    width: 50%;
+   
+}
+
+h2{
+    text-align: center ;
+    padding: 1rem;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+    width: 90%;
+   
+}
+
+.Div1{
+    margin: 1rem;
+    width: 100%;
+}
+
+input{
+    padding: 0.5rem;
+    width: 100%;
+}
+
+button{
+    padding: .7em  3em;
+}
+
+@media  (max-width: 392px){
+    .login{
+        width: 90%;  
+    }
+}
