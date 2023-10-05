@@ -7,7 +7,6 @@ function Adminpanel() {
   const [chapterName, setChapterName] = useState('');
   const [verse, setVerse] = useState('');
   const [summary, setSummary] = useState('');
-  const [verseno, setVerseno] = useState('');
   const [isUpdateMode, setIsUpdateMode] = useState(false);
 
   const handleCreateClick = () => {
@@ -51,7 +50,7 @@ function Adminpanel() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({chapterCount, chapterName , verse , summary}),
+          body: JSON.stringify({ chapterCount, chapterName , verse , summary}),
         })
           .then((response) => response.json())
           .then((data) => {
@@ -86,15 +85,6 @@ function Adminpanel() {
               value={chapterName}
               onChange={(e) => setChapterName(e.target.value)}
             />
-            <br />
-            <label htmlFor="verseno">Verse No:</label>
-            <input
-              type="text"
-              id="verseno"
-              value={verseno}
-              onChange={(e) => setVerseno(e.target.value)}
-            />
-            <br />
             <label htmlFor="verse">Verse :</label>
             <textarea
               id="verse"
