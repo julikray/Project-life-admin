@@ -1,42 +1,15 @@
-// import React from 'react';
-// import Adminpanel from './component/Adminpanel/Adminpanel';
-// // import Header from './component/header/Header';
-// // import Home from './component/home-body/Home';
-// // import Chapter1 from './component/chapter1/Chapter1';
-
-
-
-// function App() {
-//   return (
-//     <div >
-//       {/* <Header/> */}
-//       <Adminpanel/>
-
-      
-      
-     
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
 import React from 'react';
 import Adminpanel from './component/Adminpanel/Adminpanel';
-import Home from './component/home-body/Home';
+import Login from './component/Auth/Login/Login';
 import { BrowserRouter , Routes, Route } from 'react-router-dom'; 
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
-      
-        
-          <Route path="/home" element={<Home/>} />
-          <Route path="/" element={<Adminpanel/>} />
-        
-     
+          
+          <Route path="/" element={<Login/>} />
+          <Route path="/adminpanel" element={<Adminpanel/>} />
     </Routes>
     </BrowserRouter>
 
