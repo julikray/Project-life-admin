@@ -1,53 +1,85 @@
-.box{
+.bigbox{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10%;
-    width: 100%;
-   
-    
-}
-
-.login{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background-color:lightgrey ;
-    border-radius: 1rem;
-    width: 50%;
-   
-}
-
-h2{
-    text-align: center ;
-    padding: 1rem;
-}
-
-form{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 1rem;
-    width: 90%;
-   
-}
-
-.Div1{
-    margin: 1rem;
-    width: 100%;
-}
-
-input{
     padding: 0.5rem;
+}
+
+
+.create-form {
+    width: 80%;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+
+}
+
+.create-form h2 {
+    margin-bottom: 10px;
+}
+
+.create-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.create-form textarea {
     width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    height: 150px;
 }
 
-button{
-    padding: .7em  3em;
+
+
+.create-form input[type="text"],
+.create-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+
 }
 
-@media  (max-width: 392px){
-    .login{
-        width: 90%;  
-    }
+.create-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.create-form button:hover {
+    background-color: #0056b3;
+}
+
+.buttondiv {
+    margin-top: 15rem;
+  text-align: center;
+  padding: 20px;
+ 
+}
+
+.buttondiv h1 {
+  margin-bottom: 20px;
+}
+
+.buttondiv button {
+  font-size: 18px;
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.buttondiv button:hover {
+  background-color: #0056b3;
 }

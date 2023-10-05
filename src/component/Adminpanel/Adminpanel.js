@@ -1,128 +1,23 @@
-// import React from 'react'
-// import './Adminpanel.css';
-
-// function Adminpanel() {
-
-//   return (
-//     <div className='box'>
-//     <div className='login'>
-//       <h2>Login</h2>
-//       <form >
-//         <div className='Div1'>
-//           <label>Email  </label>
-//           <input
-//             type="email"
-//             placeholder="Enter your email"
-//           />
-//         </div>
-//         <div className='Div1'>
-//           <label>Password  </label>
-//           <input
-//             type="password"
-//             placeholder="Enter your password"
-//           />
-//         </div>
-//         <button type="submit">Submit</button>
-//       </form>
-//     </div>
-//     </div>
-
-//   )
-// }
-
-// export default Adminpanel
-
-
-
-
-
-// import React, { useState } from 'react';
-// import './Adminpanel.css';
-// import { useNavigate} from 'react-router-dom';
-
-// function Adminpanel() {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const navigate = useNavigate();
-
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-  
-//     const data = {
-//       email: email,
-//       password: password,
-//     };
-  
-//     try {
-//       const response = await fetch('https://www.mecallapi.com/api/login', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(data),
-//       });
-  
-//       if (response.ok) {
-//         navigate('/home');
-//       } else {
-//         console.error('Login failed');
-//       }
-//     } catch (error) {
-//       console.error('Error:', error);
-//     }
-//   };
-
-// return (
-//   <div className='box'>
-//     <div className='login'>
-//       <h2>Login</h2>
-//       <form onSubmit={handleLogin}>
-//         <div className='Div1'>
-//           <label>Email</label>
-//           <input
-//             type="email"
-//             placeholder="Enter your email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-
-//           />
-//         </div>
-//         <div className='Div1'>
-//           <label>Password</label>
-//           <input
-//             type="password"
-//             placeholder="Enter your password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-
-//           />
-//         </div>
-//         <button type="submit">Submit</button>
-//       </form>
-//     </div>
-//   </div>
-// );
-// }
-
-// export default Adminpanel;
-
-
-
-
-
 import React, { useState } from 'react';
+import './Adminpanel.css'
 
 function Adminpanel() {
   const [isCreateMode, setIsCreateMode] = useState(false);
+  const [chapterCount,setChapterCount] = useState('');
   const [chapterName, setChapterName] = useState('');
   const [verse, setVerse] = useState('');
   const [summary, setSummary] = useState('');
+  const [verseno, setVerseno] = useState('');
+  const [isUpdateMode, setIsUpdateMode] = useState(false);
 
   const handleCreateClick = () => {
     setIsCreateMode(true);
+    setIsUpdateMode(false)
   };
 
   const handleUpdateClick = () => {
+    setIsCreateMode(false);
+    setIsUpdateMode(true)
     //  update logic here
   };
 
@@ -130,12 +25,12 @@ function Adminpanel() {
     // Send the data to the backend for storage here
  
 
-    fetch('/api/createChapter', {
+    fetch('/api/create-chapter', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(chapterNumber , chapterName , verse , summary),
+      body: JSON.stringify(chapterCount,chapterName , verse , summary),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -148,12 +43,42 @@ function Adminpanel() {
       });
   };
 
+  const handleUpdateSubmit = () => {
+        // Send the updated data to the backend for storage here
+    
+        fetch('/api/update-chapter', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({chapterCount, chapterName , verse , summary}),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('Data updated on backend:', data);
+            setIsUpdateMode(false); 
+          })
+          .catch((error) => {
+            console.error('Error updating data on backend:', error);
+          });
+      };
+    
+     
   return (
-    <div>
-      {isCreateMode ? (
+    <div className='bigbox'>
+     
+      {isCreateMode || isUpdateMode ? (
         <div className="create-form">
-          <h2>Create Chapter</h2>
+          <h2>{isCreateMode ? 'Create Chapter' : 'Update Chapter'}</h2>
           <form>
+          <label htmlFor="chapterCount">Chapter No:</label>
+            <input
+              type="text"
+              id="chapterCount"
+              value={chapterCount}
+              onChange={(e) => setChapterCount(e.target.value)}
+            />
+            <br />
             <label htmlFor="chapterName">Chapter Name:</label>
             <input
               type="text"
@@ -162,27 +87,42 @@ function Adminpanel() {
               onChange={(e) => setChapterName(e.target.value)}
             />
             <br />
-            <label htmlFor="verse">Verse:</label>
+            <label htmlFor="verseno">Verse No:</label>
             <input
               type="text"
+              id="verseno"
+              value={verseno}
+              onChange={(e) => setVerseno(e.target.value)}
+            />
+            <br />
+            <label htmlFor="verse">Verse :</label>
+            <textarea
               id="verse"
               value={verse}
               onChange={(e) => setVerse(e.target.value)}
-            />
+            ></textarea>
             <br />
-            <label htmlFor="summary">Summary:</label>
+           
+            <label htmlFor="summary">Summary :</label>
             <textarea
               id="summary"
               value={summary}
               onChange={(e) => setSummary(e.target.value)}
             ></textarea>
           </form>
-          <button onClick={handleCreateSubmit}>Submit</button>
+          <button
+            onClick={isCreateMode ? handleCreateSubmit : handleUpdateSubmit}
+          >
+            {isCreateMode ? 'Submit' : 'Update'}
+          </button>
         </div>
       ) : (
-        <div>
+        <div className='buttondiv'>
+           <h1>Welcome to Geeta Adminpanel</h1>
+          
           <button onClick={handleCreateClick}>Create</button>
           <button onClick={handleUpdateClick}>Update</button>
+          
         </div>
       )}
     </div>
@@ -190,3 +130,4 @@ function Adminpanel() {
 }
 
 export default Adminpanel;
+
