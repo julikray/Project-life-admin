@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import Adminpanel from "../Adminpanel/Adminpanel.js";
+import { ToastContainer, toast } from "react-toastify";
 import "./Login.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [logedin, setLogedin] = useState("");
+  const [name , setName] = useState('')
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
+      toast.info("Please Wait", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       fetch("https://pink-extinct-basket-clam.cyclic.app/api/login", {
         method: "post",
         headers: { "Content-type": "application/json" },
@@ -21,9 +33,29 @@ function Login() {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            console.log(data.success);
-            // navigate("/adminpanel");
+            toast.success(data.message, {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
             setLogedin(true);
+            setName(data.admin.name)
+          } else {
+            toast.error(data.message, {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }
         });
     } catch (error) {
@@ -33,8 +65,9 @@ function Login() {
 
   return (
     <>
+      <ToastContainer />
       {logedin ? (
-        <Adminpanel />
+        <Adminpanel name={name} / >
       ) : (
         <div className="box">
           <div className="login">
