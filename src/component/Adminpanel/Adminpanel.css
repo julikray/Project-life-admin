@@ -1,8 +1,8 @@
-.bigbox{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
+.bigbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
 }
 
 
@@ -63,13 +63,10 @@
    
  
   padding: 20px;
- 
 }
-
 .buttondiv h1 {
   margin-bottom: 20px;
 }
-
 .buttondiv button {
   font-size: 18px;
   margin-right: 10px;
@@ -80,7 +77,6 @@
   cursor: pointer;
   border-radius: 3px;
 }
-
 .buttondiv button:hover {
   background-color: #0056b3;
 }
