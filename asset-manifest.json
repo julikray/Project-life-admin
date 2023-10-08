@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Project-life-admin/static/css/main.1401851d.css",
+    "main.js": "/Project-life-admin/static/js/main.2dd9f11e.js",
+    "index.html": "/Project-life-admin/index.html",
+    "main.1401851d.css.map": "/Project-life-admin/static/css/main.1401851d.css.map",
+    "main.2dd9f11e.js.map": "/Project-life-admin/static/js/main.2dd9f11e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1401851d.css",
+    "static/js/main.2dd9f11e.js"
+  ]
+}
