@@ -80,7 +80,7 @@ const UpdateChapter = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            toast.success(data.message, {
+            toast.success("Successfully Updated the Chapter", {
               position: "top-center",
               autoClose: 5000,
               hideProgressBar: false,
