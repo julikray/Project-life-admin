@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ToastContainer , toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 const UpdateChapter = () => {
   useEffect(() => {
     try {
@@ -30,24 +30,6 @@ const UpdateChapter = () => {
   const [verseNo, setVerseNo] = useState();
   const [recivedVerse, setRecivedVerse] = useState([]);
 
-  const updateVerse = (e) => {
-    e.preventDefault();
-    recivedVerse.splice(verseNo, 1, {
-      verse,
-      english,
-      explanation,
-    });
-    toast.success("Verse is added to queue. You need to click on update button to perfome the action ", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
 
   const handleChapterOption = (e) => {
     setChapNO(recivedData[e.target.value].chapterCount);
@@ -65,6 +47,11 @@ const UpdateChapter = () => {
   };
   const handleSubmitt = (e) => {
     e.preventDefault();
+    recivedVerse.splice(verseNo, 1, {
+      verse,
+      english,
+      explanation,
+    });
     try {
       fetch("https://pink-extinct-basket-clam.cyclic.app/api/update-chapter", {
         method: "post",
@@ -98,7 +85,7 @@ const UpdateChapter = () => {
   };
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <div className="box">
         <div className="login">
           <h2>Update-Chapter</h2>
@@ -110,6 +97,7 @@ const UpdateChapter = () => {
                 id=""
                 onChange={(e) => handleChapterOption(e)}
               >
+             <option value="none" selected disabled hidden>Select</option>
                 {recivedData.map((items, index) => {
                   return (
                     <option key={index} value={index}>
@@ -137,6 +125,7 @@ const UpdateChapter = () => {
                 id=""
                 onChange={(e) => handleVerseOption(e)}
               >
+                    <option value="none" selected disabled hidden>Select</option>
                 {recivedVerse.map((item, index) => {
                   return (
                     <option key={index} value={index}>
@@ -173,7 +162,7 @@ const UpdateChapter = () => {
                 onChange={(e) => setExplanation(e.target.value)}
               />
             </div>
-            <button onClick={updateVerse}>Update-Verse</button>
+            
             <div className="Div1">
               <label>Summary</label>
               <input
