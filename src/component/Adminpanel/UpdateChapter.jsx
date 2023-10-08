@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ToastContainer , toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 const UpdateChapter = () => {
   useEffect(() => {
     try {
@@ -37,16 +37,19 @@ const UpdateChapter = () => {
       english,
       explanation,
     });
-    toast.success("Verse is added to queue. You need to click on update button to perfome the action ", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    toast.success(
+      "Verse is added to queue. You need to click on update button to perfome the action ",
+      {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      }
+    );
   };
 
   const handleChapterOption = (e) => {
@@ -98,7 +101,7 @@ const UpdateChapter = () => {
   };
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <div className="box">
         <div className="login">
           <h2>Update-Chapter</h2>
@@ -110,6 +113,7 @@ const UpdateChapter = () => {
                 id=""
                 onChange={(e) => handleChapterOption(e)}
               >
+             <option value="none" selected disabled hidden>Select</option>
                 {recivedData.map((items, index) => {
                   return (
                     <option key={index} value={index}>
@@ -137,6 +141,7 @@ const UpdateChapter = () => {
                 id=""
                 onChange={(e) => handleVerseOption(e)}
               >
+                    <option value="none" selected disabled hidden>Select</option>
                 {recivedVerse.map((item, index) => {
                   return (
                     <option key={index} value={index}>
